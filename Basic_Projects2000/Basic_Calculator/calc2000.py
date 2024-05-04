@@ -1,73 +1,89 @@
 import tkinter as tk
 
-# Toplama işlemi
-def toplama(x, y):
-    return x + y
 
-# Çıkarma işlemi
-def cikarma(x, y):
-    return x - y
-
-# Çarpma işlemi
-def carpma(x, y):
-    return x * y
-
-# Bölme işlemi
-def bolme(x, y):
-    if y == 0:
-        return "Sıfıra bölme hatası!"
-    else:
-        return x / y
-
-
-# Ana pencereyi oluştur
-root = tk.Tk()
-root.title("Tkinter Örneği")
-
-# sayilar
-sayi1 = tk.Entry(root)
-sayi1.pack()
-etiket1 = tk.Label(root, text="sayi 1'i giriniz")
-etiket1.pack()
-
-sayi2 = tk.Entry(root)
-sayi2.pack()
-etiket2 = tk.Label(root, text="sayi 2'yi giriniz")
-etiket2.pack()
-
-def cast_type_num1():
-    text1 = sayi1.get()
+# calculation functions
+def _sum():
     try:
-        num1 = int(text1)  
-        return num1
-    except:
-        print("This is not number")
-        return None
-def cast_type_num2():
-    text2 = sayi2.get()
+        _num1 = int(num1.get())
+        _num2 = int(num2.get())
+        final = _num1 + _num2
+        labelFinal.config(text="Result: " + str(final))
+    except ValueError:
+        labelFinal.config(text="Something Went Wrong!")
+
+
+def _minus():
     try:
-        num2 = int(text2)
-        return num2
-    except:
-        print("This is not number")
-        return None
+        _num1 = int(num1.get())
+        _num2 = int(num2.get())
+        final = _num1 - _num2
+        labelFinal.config(text="Result: " + str(final))
+    except ValueError:
+        labelFinal.config(text="Something Went Wrong!")
 
-# Düğme
 
-aa = cast_type_num1()
-bb = cast_type_num2()
+def _multip():
+    try:
+        _num1 = int(num1.get())
+        _num2 = int(num2.get())
+        final = _num1 * _num2
+        labelFinal.config(text="Result: " + str(final))
+    except ValueError:
+        labelFinal.config(text="Something Went Wrong!")
 
-topla_btn = tk.Button(root, text="Topla", command=toplama(aa, bb))
-topla_btn.pack()
 
-carpma_btn = tk.Button(root, text="Carp", command=carpma(aa, bb))
-carpma_btn.pack()
+def _div():
+    try:
+        _num1 = float(num1.get())
+        _num2 = float(num2.get())
+        if _num2 != 0:
+            final = _num1 / _num2
+            labelFinal.config(text="Result: " + str(final))
+        else:
+            labelFinal.config(text="Something Went Wrong!")
+    except ValueError:
+        labelFinal.config(text="Something Went Wrong!")
 
-bolme_btn = tk.Button(root, text="Bol", command=bolme(aa, bb))
-bolme_btn.pack()
 
-cikarma_btn = tk.Button(root, text="Cikar", command=cikarma(aa, bb))
-cikarma_btn.pack()
+# form
+form = tk.Tk()
+form.geometry("475x320+600+250")
+form.resizable(False, False)
+form.title("Calculator")
 
-# Ana döngüyü başlat
-root.mainloop()
+label = tk.Label(form, text="Calculator by Nurullah Coskun", fg="brown", bg="bisque1",
+                 font="Times 8 italic")
+label.pack()
+
+# input label 1
+label1 = tk.Label(form, text="Number 1: ", font="Times 17")
+label1.place(x=40, y=60)
+# input Entry 1
+num1 = tk.Entry(form, width=25, font="Times 12 bold")
+num1.place(x=150, y=65)
+
+# input label 2
+label2 = tk.Label(form, text="Number 2: ", font="Times 17")
+label2.place(x=40, y=105)
+# input Entry 2
+num2 = tk.Entry(form, width=25, font="Times 12 bold")
+num2.place(x=150, y=110)
+
+# out label
+labelFinal = tk.Label(form, text="Result:    ", font="Times 17")
+labelFinal.place(x=200, y=150)
+
+# buttons
+button1 = tk.Button(form, text="Sum", font="Times 17", command=_sum)
+button1.place(x=70, y=210)
+
+button2 = tk.Button(form, text="Subtract", font="Times 17", command=_minus)
+button2.place(x=135, y=210)
+
+button3 = tk.Button(form, text="Multiple", font="Times 17", command=_multip)
+button3.place(x=237, y=210)
+
+button4 = tk.Button(form, text="Divide", font="Times 17", command=_div)
+button4.place(x=340, y=210)
+
+form.mainloop()
