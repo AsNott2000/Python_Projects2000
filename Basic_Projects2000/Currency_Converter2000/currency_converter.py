@@ -40,7 +40,6 @@ casted_sterlin = float(sterlin.replace(",", "."))
 #eger euro usd veya usd euro hesaplanmak isterse ikisini birbirine boleriz boylece paritesini bulmus oluruz.
 #ornegin dolar 4 euro 6 tl ise, euro/usd= 6/4 olur.
 
-
 #ui
 ui = tk.Tk()
 ui.title("Currency Converter 2000")
