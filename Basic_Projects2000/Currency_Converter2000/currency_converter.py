@@ -5,12 +5,16 @@ import requests
 
 #Functions
 def _currency():
+    _entry = float(_input.get())
     if cbox.get() == 'Usd':
-        label.config(text = 'Dollar Choosed')
+        curency_dollar = _entry*casted_dollar
+        label_result.config(text = round(curency_dollar, 2))
     elif cbox.get() == 'Euro':
-        label.config(text='Euro Choosed')
+        curency_euro = _entry * casted_euro
+        label_result.config(text = round(curency_euro, 2))
     elif cbox.get() == 'Sterlin':
-        label.config(text='Sterlin Choosed')
+        curency_sterlin = _entry * casted_sterlin
+        label_result.config(text=round(curency_sterlin, 2))
 
 
 #api data extraction
@@ -47,14 +51,16 @@ _input = tk.Entry(ui, width=25, font="Times 12 bold")
 _input.place(x=150, y=110)
 
 label = tk.Label(ui, text="Price : ", font="Times 17")
-label.place(x=40, y=105)
-label2 = tk.Label(ui, text="Result : ", font="Times 17")
-label2.place(x=150, y=170)
+label.place(x=50, y=105)
+label_result = tk.Label(ui, text="", font="Times 17")
+label_result.place(x=150, y=170)
+label_tl = tk.Label(ui, text="Result : ", font="Times 17")
+label_tl.place(x=50, y=170)
 
 n = tk.StringVar()
 cbox = ttk.Combobox(ui, width=27, textvariable=n, font="Times 15")
 cbox['values'] = ('Usd', 'Euro', 'Sterlin')
-cbox.place(x=75, y=40)
+cbox.place(x=70, y=40)
 cbox.current(0)
 
 currency = tk.Button(ui, text="Currency", font="Times 17", command=_currency)
