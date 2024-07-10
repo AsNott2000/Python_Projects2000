@@ -20,5 +20,3 @@ def xloc2():
     t.setposition(25, 175)
     t.pendown()
     t.setposition(-25, 125)
-
-    hello
